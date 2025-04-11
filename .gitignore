@@ -1,0 +1,7 @@
+target/
+.idea/
+*.iws
+*.iml
+*.ipr
+### Mac OS ###
+.DS_Store
