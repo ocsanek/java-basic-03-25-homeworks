@@ -8,7 +8,6 @@ public class Homework3 {
 
         Scanner scanner = new Scanner(System.in);
         Random random = new Random();
-
         System.out.println("Введите число от 1 до 5:");
         int choice = scanner.nextInt();
 
