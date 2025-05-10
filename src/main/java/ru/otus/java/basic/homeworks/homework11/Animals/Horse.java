@@ -1,4 +1,4 @@
-package ru.otus.java.basic.homeworks.homework11.Animals;
+package ru.otus.java.basic.homeworks.homework11.animals;
 
 import java.util.Scanner;
 
@@ -11,12 +11,9 @@ public class Horse extends Animal {
     }
 
     @Override
-    public double swim() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("\nВведите расстояние для плавания, в метрах: ");
-        int distanceForSwim = scanner.nextInt();
+    public double swim(double distanceForSwim) {
         while (distanceForSwim > 0) {
-            int staminaCost = distanceForSwim * 4;
+            double staminaCost = distanceForSwim * 4;
             if (stamina < staminaCost) {
                 System.out.println("\n" + name + " не может проплыть " + distanceForSwim + "м., устал");
                 tired = true;

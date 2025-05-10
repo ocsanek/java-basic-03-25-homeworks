@@ -1,4 +1,4 @@
-package ru.otus.java.basic.homeworks.homework11.Animals;
+package ru.otus.java.basic.homeworks.homework11.animals;
 
 import java.util.Scanner;
 
@@ -12,11 +12,9 @@ public abstract class Animal {
 
     Scanner scanner = new Scanner(System.in);
 
-    public double run() {
-        System.out.println("\nВведите расстояние для пробежки, в метрах: ");
-        int distanceForRun = scanner.nextInt();
+    public double run(double distanceForRun) {
         while (distanceForRun > 0) {
-            int staminaCost = distanceForRun;
+            double staminaCost = distanceForRun;
             if (stamina < staminaCost) {
                 System.out.println("\n" + name + " не может пробежать " + distanceForRun + "м., устал");
                 tired = true;
@@ -24,7 +22,7 @@ public abstract class Animal {
             } else {
                 stamina -= staminaCost;
                 double time = distanceForRun / speedRun;
-                System.out.printf("\n%s пробежал %d м., за %.2f секунд.", name, distanceForRun, time);
+                System.out.printf("\n"+ name + " пробежал " + distanceForRun + "м., за " + time + " секунд.");
                 return time;
             }
         }
@@ -32,7 +30,7 @@ public abstract class Animal {
         return -1;
     }
 
-    public abstract double swim();
+    public abstract double swim(double distanceForSwim);
 
     public void takeStamina() {
         System.out.println("\nВведите количество выносливости которое хотите добавить: ");
