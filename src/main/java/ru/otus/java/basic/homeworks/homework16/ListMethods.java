@@ -64,7 +64,7 @@ public class ListMethods {
         return average > minAverageAge;
     }
 
-    public static String getYoungestEmployee(List<Employee> employees) {
+    public static Employee getYoungestEmployee(List<Employee> employees) {
         if (employees.isEmpty()) {
             return null;
         }
@@ -74,7 +74,7 @@ public class ListMethods {
                 youngest = emp;
             }
         }
-        return youngest.getName();
+        return youngest;
     }
 
 
