@@ -16,4 +16,9 @@ public class Employee {
     public int getAge() {
         return age;
     }
+
+    @Override
+    public String toString() {
+        return name + ", " + age + " лет.";
+    }
 }
