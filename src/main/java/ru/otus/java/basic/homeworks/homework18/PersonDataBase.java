@@ -12,7 +12,7 @@ public class PersonDataBase {
             Position.MANAGER,
             Position.DIRECTOR,
             Position.BRANCH_DIRECTOR,
-            Position.SENIOR_MANAGER);
+            Position.SENIOR_MANAGER));
 
     public Person findById(Long id) {
         return personMap.get(id);
