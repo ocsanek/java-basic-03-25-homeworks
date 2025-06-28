@@ -9,19 +9,22 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class Server {
     private int port;
     private List<ClientHandler> clients;
+    private AuthenticatedProvider authenticatedProvider;
 
     public Server(int port) {
         this.port = port;
         clients = new CopyOnWriteArrayList<>();
+        authenticatedProvider = new InMemoryAuthenticatedProvider(this);
     }
 
     public void start() {
         try (ServerSocket serverSocket = new ServerSocket(port)) {
             System.out.println("Сервер запущен на порту: " + port);
+            authenticatedProvider.initialize();
             while (true) {
                 Socket socket = serverSocket.accept();
-                System.out.println("Клиент подключился ником user" + socket.getPort());
-                subscribe(new ClientHandler(socket, this));
+                System.out.println("Клиент подключился " + socket.getPort());
+                new ClientHandler(socket, this);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -38,18 +41,33 @@ public class Server {
         clients.remove(clientHandler);
     }
 
-    public ClientHandler  getClientByUsername(String username) {
-        for (ClientHandler client : clients) {
-            if (client.getUsername().equals(username)) {
-                return client;
-            }
-        }
-        return null;
-    }
-
     public void broadcastMessage(String message) {
         for (ClientHandler c : clients) {
             c.sendMsg(message);
         }
+    }
+
+    public boolean kickClientByUsername(String username) {
+        for (ClientHandler c : clients) {
+            if (c.getUsername().equals(username)) {
+                c.sendMsg("Вы были отключены от сервера.");
+                c.disconnect();
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isUsernameBusy(String username) {
+        for (ClientHandler c : clients) {
+            if (c.getUsername().equals(username)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public AuthenticatedProvider getAuthenticatedProvider() {
+        return authenticatedProvider;
     }
 }
