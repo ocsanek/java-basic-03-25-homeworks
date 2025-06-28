@@ -26,6 +26,14 @@ public class Client {
                             if (message.equals("/exitok")) {
                                 break;
                             }
+                            if (message.startsWith("/authok ")) {
+                                System.out.println("Удалось успешно войти в чат " +
+                                        "под именем пользователя "+ message.split(" ")[1]);
+                            }
+                            if (message.startsWith("/regok ")) {
+                                System.out.println("Удалось успешно зарегистроваться и войти в чат " +
+                                        "под именем пользователя "+ message.split(" ")[1]);
+                            }
                         } else {
                             System.out.println(message);
                         }
@@ -36,10 +44,6 @@ public class Client {
                     disconnect();
                 }
             }).start();
-
-            System.out.println("Введите ваш ник: ");
-            String username = scanner.nextLine();
-            out.writeUTF("/setname " + username);
 
             while (true) {
                 String message = scanner.nextLine();
