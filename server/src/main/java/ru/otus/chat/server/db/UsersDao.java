@@ -86,6 +86,6 @@ public class UsersDao {
         } catch (SQLException e){ throw new RuntimeException(e); }
     }
 
-    // утилита для простых операций (рейтинги)
+    // утилита для простых операций
     public Connection getConnection() throws SQLException { return db.get(); }
 }

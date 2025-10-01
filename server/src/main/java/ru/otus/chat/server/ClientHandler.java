@@ -28,7 +28,7 @@ public class ClientHandler {
     private static final int SPAM_N = 10;     // максимум сообщений
     private static final int SPAM_T_SEC = 30; // окно
 
-    // фильтр плохих слов (пример)
+    // фильтр плохих слов
     private static final Set<String> BAD = Set.of("дурак", "идиот", "редиска");
 
     public ClientHandler(Socket socket, Server server) throws IOException {
@@ -116,7 +116,7 @@ public class ClientHandler {
                         server.shutdown();
                     }
 
-                    /* ----- Комнаты ----- */
+                    //Комнаты
 
                     else if (message.equals("/rooms")) {
                         sendMsg("/info rooms " + String.join(",", server.listRooms()));
@@ -158,7 +158,7 @@ public class ClientHandler {
                         sendMsg("/info room " + currentRoom);
                     }
 
-                    /* ----- Last activity ----- */
+                    //Последняя активность
 
                     else if (message.startsWith("/last_activity ")) {
                         String[] t = message.split(" ");
@@ -167,7 +167,7 @@ public class ClientHandler {
                         sendMsg("/last_activity_ok " + t[1] + " " + (ts==null? "unknown" : ts.toString()));
                     }
 
-                    /* ----- Рейтинги (простая запись + кулдаун в клиенте не делаем) ----- */
+                    //Рейтинги
                     else if (message.startsWith("/like ")) {
                         // Здесь для краткости делаем просто запись в таблицу.
                         String[] t = message.split(" ");
@@ -186,7 +186,7 @@ public class ClientHandler {
                         } catch (Exception e){ sendMsg("/error LIKE_FAIL " + e.getMessage()); }
                     }
 
-                    /* ----- Передача небольших файлов (PM, base64) ----- */
+                    //Передача небольших файлов (PM, base64)
                     else if (message.startsWith("/filepm ")) {
                         // формат: /filepm <to> <filename> <base64>
                         String[] t = message.split(" ", 4);
