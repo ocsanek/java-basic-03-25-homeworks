@@ -1,4 +1,4 @@
-package ru.otus.java.basic.homeworks.homework32.client;
+package ru.otus.java.basic.homeworks.homework33.client;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

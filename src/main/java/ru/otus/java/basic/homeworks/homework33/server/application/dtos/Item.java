@@ -1,14 +1,12 @@
-package ru.otus.java.basic.homeworks.homework32.server.application.dtos;
+package ru.otus.java.basic.homeworks.homework33.server.application.dtos;
 
 import java.math.BigDecimal;
-
 
 public class Item {
     private Long id;
     private String title;
     private BigDecimal price;
     private int[] categories = new int[]{4, 10, 15};
-
 
     public int[] getCategories() { return categories; }
     public void setCategories(int[] categories) { this.categories = categories; }
@@ -19,9 +17,8 @@ public class Item {
     public BigDecimal getPrice() { return price; }
     public void setPrice(BigDecimal price) { this.price = price; }
 
-
-    public Item() { }
-    public Item(Long id, String title, BigDecimal price) {
-        this.id = id; this.title = title; this.price = price;
+    public Item() {}
+    public Item(Long id, String title, BigDecimal price, int[] categories) {
+        this.id = id; this.title = title; this.price = price; this.categories = categories;
     }
 }
